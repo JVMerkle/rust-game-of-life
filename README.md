@@ -1,6 +1,14 @@
 # Game of Life
 
-Example usage:
+
+## Example usage
+Cargo.toml
+```toml
+# ...
+[dependencies]
+game_of_life = { path = "path/to/crate/game_of_life" }
+```
+main.rs
 ```rust,no_run
 extern crate game_of_life;
 
