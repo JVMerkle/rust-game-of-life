@@ -1,15 +1,10 @@
 # Game of Life
 
+Simple library.
 
-## Example usage
-Cargo.toml
-```toml
-# ...
-[dependencies]
-game_of_life = { path = "path/to/crate/game_of_life" }
-```
-main.rs
-```rust,no_run
+## Example
+
+```rust
 extern crate game_of_life;
 
 use game_of_life::*;
@@ -17,25 +12,27 @@ use game_of_life::*;
 use std::{thread, time};
 
 fn main() {
-    let mut current_field = GameOfLife::new(10);
+    let mut field = GameOfLife::new(10);
 
+    // Initialize the field
     for x in 0 .. 10 {
         if x == 5 {
             continue;
         }
         let position = Position{x:x,y:5};
-        current_field.set_state(position,State::Alive);
+        field.set_state(position,State::Alive);
     }
 
-    for iter in 0..100 {
-        println!("Game Field Iteration {}\n{}", iter, current_field);
-        let new_field = current_field.get_next_generation();
+    // Run!
+    for iter in 0..10 {
+        println!("Game Field Iteration {}\n{}", iter, field);
+        let new_field = field.get_next_generation();
 
-        if new_field == current_field {
+        if new_field == field {
             println!("No more changes");
             break;
         }
-        current_field = new_field;
+        field = new_field;
 
         thread::sleep(time::Duration::from_millis(300));
     }

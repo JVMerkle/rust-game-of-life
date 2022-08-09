@@ -1,12 +1,10 @@
 use super::State;
 
-pub fn get_next_state(current : State, neighbours : u32) -> State
-{
+pub fn get_next_state(current: State, neighbours: u32) -> State {
     if neighbours <= 1 || neighbours >= 4 {
         return State::Dead;
-    }
-    else if  neighbours == 3 {
-        return State::Alive
+    } else if neighbours == 3 {
+        return State::Alive;
     }
 
     return current;
