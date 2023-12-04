@@ -1,8 +1,8 @@
 mod game_rule;
 
-use std::ops::Add;
-use std::fmt;
 use std::collections::HashMap;
+use std::fmt;
+use std::ops::Add;
 
 #[derive(Copy, Clone, Hash, Eq, PartialEq, Debug)]
 pub struct Position {
@@ -14,7 +14,10 @@ impl Add for Position {
     type Output = Position;
 
     fn add(self, other: Position) -> Position {
-        Position { x: self.x + other.x, y: self.y + other.y }
+        Position {
+            x: self.x + other.x,
+            y: self.y + other.y,
+        }
     }
 }
 
@@ -63,7 +66,10 @@ impl fmt::Display for GameOfLife {
 
 impl GameOfLife {
     pub fn new(length: i32) -> GameOfLife {
-        let mut field = GameOfLife { hash_map: HashMap::new(), length };
+        let mut field = GameOfLife {
+            hash_map: HashMap::new(),
+            length,
+        };
         for x in 0..length {
             for y in 0..length {
                 let position = Position { x, y };
@@ -189,12 +195,12 @@ mod tests {
         let mut field = GameOfLife::new(10);
 
         // Initialize the field
-        for x in 0 .. 10 {
+        for x in 0..10 {
             if x == 5 {
                 continue;
             }
-            let position = Position{x:x,y:5};
-            field.set_state(position,State::Alive);
+            let position = Position { x: x, y: 5 };
+            field.set_state(position, State::Alive);
         }
 
         // Run!
